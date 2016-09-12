@@ -2,6 +2,7 @@ package controllers
 
 import java.util.UUID
 
+import com.amazonaws.services.dynamodbv2.document.Item
 import model._
 import org.joda.time.DateTime
 import play.api.Configuration
@@ -9,6 +10,7 @@ import play.api.libs.json._
 import play.api.libs.ws.WSClient
 import play.api.mvc.{Action, Controller}
 import com.gu.pandomainauth.model.{User => PandaUser}
+import model.commands.CreateCampaignCommand
 import repositories.{CampaignRepository, GoogleAnalytics}
 
 class CampaignApi(override val wsClient: WSClient) extends Controller with PandaAuthActions {
@@ -28,6 +30,16 @@ class CampaignApi(override val wsClient: WSClient) extends Controller with Panda
         CampaignRepository.putCampaign(campaign)
         Ok(Json.toJson(campaign))
       }
+    }
+  }
+
+  def createCampaign() = APIAuthAction { req =>
+    implicit val user = Some(User(req.user.firstName, req.user.lastName, req.user.email))
+
+    req.body.asJson.map { json =>
+      json.as[CreateCampaignCommand].process.map{t => Ok(Json.toJson(t))} getOrElse BadRequest("Could not create campaign")
+    }.getOrElse {
+      BadRequest("Expecting campaign json data")
     }
   }
 

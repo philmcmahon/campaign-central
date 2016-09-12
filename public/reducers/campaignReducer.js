@@ -8,6 +8,9 @@ export default function campaign(state = null, action) {
     case 'CAMPAIGN_UPDATE_REQUEST':
       return action.campaign;
 
+    case 'CAMPAIGN_POPULATE_BLANK':
+      return action.campaign
+
     default:
       return state;
   }

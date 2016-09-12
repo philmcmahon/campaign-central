@@ -7,6 +7,7 @@ import {hasPermission} from './util/verifyPermission';
 import Main from './components/Main';
 import Campaigns from './components/Campaigns/Campaigns';
 import Campaign from './components/Campaign/Campaign';
+import CreateCampaign from './components/CreateCampaign/CreateCampaign.js'
 
 import Clients from './components/Clients/Clients';
 import Client from './components/Client/Client';
@@ -23,6 +24,7 @@ export const router = (
       <IndexRedirect to="/campaigns" />
       <Route path="/campaigns" component={Campaigns} />
       <Route path="/campaigns/:filterName" component={Campaigns} />
+      <Route path="/campaign/create" component={CreateCampaign} />
       <Route path="/campaign/:id" component={Campaign} />
       <Route path="/clients" component={Clients} />
       <Route path="/clients/:id" component={Client} />

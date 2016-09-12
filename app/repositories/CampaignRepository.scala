@@ -1,9 +1,13 @@
 package repositories
 
+import java.util.UUID
+
 import model.{Campaign, CampaignWithSubItems, Note}
 import org.joda.time.DateTime
 import play.api.Logger
+import play.api.libs.json.JsValue
 import services.Dynamo
+import com.amazonaws.services.dynamodbv2.document.Item
 
 import scala.collection.JavaConversions._
 

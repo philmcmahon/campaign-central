@@ -45,7 +45,7 @@ class CampaignEdit extends React.Component {
             <CampaignInformationEdit campaign={this.props.campaign} updateCampaign={this.triggerUpdate} />
           </div>
           <div className="campaign__column">
-            <CampaignTargetsEdit campaign={this.props.campaign} updateCampaign={this.triggerUpdate} />
+            {this.props.hideTargets ? false : <CampaignTargetsEdit campaign={this.props.campaign} updateCampaign={this.triggerUpdate} />}
           </div>
         </div>
         {this.renderSaveButtons()}
