@@ -40,6 +40,7 @@ sealed trait Config {
   def analyticsDataCacheTableName = s"campaign-central-$stage-analytics"
 
   def trafficDriverRejectTableName = s"campaign-central-$stage-drivers-rejected"
+  def campaignPageviewsTableName = s"campaign-central-$stage-campaign-page-views"
 
   def tagManagerApiUrl: String
   def composerUrl: String
